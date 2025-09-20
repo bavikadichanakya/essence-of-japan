@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essence of Japan - A Visual Journey</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- General Setup & Variables --- */
+        :root {
+            --primary-color: #d32f2f; /* Lacquer Red */
+            --secondary-color: #1a237e; /* Indigo Blue */
+            --accent-color: #ffd700; /* Gold */
+            --text-color: #333;
+            --bg-color: #fdfdfd;
+            --light-bg: #fffaf0; /* Sakura Pink tint */
+            --serif-font: 'Noto Serif JP', serif;
+            --sans-font: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--sans-font);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- Header & Navigation --- */
+        #main-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: background-color 0.4s ease, padding 0.4s ease;
+        }
+
+        #main-header.scrolled {
+            background-color: rgba(26, 35, 126, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav .logo {
+            font-family: var(--serif-font);
+            font-size: 2rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s ease;
+        }
+
+        nav .logo:hover {
+            transform: scale(1.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.4s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -2;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .hero-content h1 {
+            font-family: var(--serif-font);
+            font-size: 4.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #a02525;
+            transform: translateY(-3px);
+        }
+
+        .scroll-down-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-down-indicator a {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translate(-50%, 0);
+            }
+            40% {
+                transform: translate(-50%, -15px);
+            }
+            60% {
+                transform: translate(-50%, -5px);
+            }
+        }
+
+
+        /* --- General Section Styling --- */
+        .content-section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            font-family: var(--serif-font);
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .textured-bg {
+            background-color: var(--light-bg);
+            /* background-image: url('assets/asanoha-pattern.png'); */ /* Optional: Add subtle pattern */
+        }
+
+        /* --- About Section --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .about-card {
+            padding: 2rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .about-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .about-card h3 {
+            font-family: var(--serif-font);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+
+        /* --- Attractions Section --- */
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .attraction-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .attraction-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .attraction-card .card-content {
+            padding: 1.5rem;
+        }
+
+        .attraction-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        /* --- Trains Section --- */
+        .train-showcase {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        .train-card {
+            display: flex;
+            gap: 2rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+            align-items: center;
+        }
+        .train-card img {
+            width: 40%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .train-info {
+            padding: 1rem;
+        }
+        .train-info h3 {
+            font-family: var(--serif-font);
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+        }
+        .train-info span {
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            background: var(--light-bg);
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+        }
+
+        /* --- Blog Section --- */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-post {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+
+        .blog-post img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* --- Contact Section --- */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: var(--sans-font);
+        }
+        .contact-form button {
+            border: none;
+            cursor: pointer;
+            align-self: flex-start;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.8rem;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        footer p {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- Audio Player --- */
+        #audio-player {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 1000;
+        }
+
+        #music-toggle {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        #music-toggle:hover {
+            background-color: #a02525;
+        }
+
+        /* --- Animations on Scroll --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in {
+            animation: fadeInAnimation 1.5s ease-in forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Delay animations for child elements */
+        .animate-on-scroll.visible:nth-child(2) { transition-delay: 0.1s; }
+        .animate-on-scroll.visible:nth-child(3) { transition-delay: 0.2s; }
+        .animate-on-scroll.visible:nth-child(4) { transition-delay: 0.3s; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 3.5rem; }
+            .train-card { flex-direction: column; }
+            .train-card img { width: 100%; height: 250px; }
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; } /* Basic mobile menu handling; needs JS for a toggle */
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-content p { font-size: 1.2rem; }
+            .section-title { font-size: 2.2rem; }
+            .content-section { padding: 4rem 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <nav>
+            <a href="#home" class="logo">日本</a>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#attractions">Attractions</a></li>
+                <li><a href="#trains">Luxury Trains</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <video autoplay muted loop playsinline id="hero-video">
+                <source src="assets/hero-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="hero-content fade-in">
+                <h1>The Spirit of Japan</h1>
+                <p>An immersive journey through ancient traditions and futuristic wonders.</p>
+                <a href="#about" class="cta-button">Explore Now</a>
+            </div>
+            <div class="scroll-down-indicator">
+                <a href="#about"><i class="fas fa-chevron-down"></i></a>
+            </div>
+        </section>
+
+        <section id="about" class="content-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Discover Japan</h2>
+                <p class="section-subtitle animate-on-scroll">A land of timeless culture and breathtaking beauty.</p>
+                <div class="about-grid">
+                    <div class="about-card animate-on-scroll">
+                        <i class="fas fa-torii-gate"></i>
+                        <h3>History & Tradition</h3>
+                        <p>From ancient emperors to samurai warriors, Japan's rich history is woven into the fabric of its shrines, temples, and timeless customs.</p>
+                    </div>
+                    <div class="about-card animate-on-scroll">
+                        <i class="fas fa-city"></i>
+                        <h3>Modern Lifestyle</h3>
+                        <p>Experience the vibrant contrast of serene gardens and neon-lit skyscrapers, where technology and tradition coexist in perfect harmony.</p>
+                    </div>
+                    <div class="about-card animate-on-scroll">
+                        <i class="fas fa-fan"></i>
+                        <h3>Seasonal Highlights</h3>
+                        <p>Witness the fleeting beauty of cherry blossoms in spring, vibrant festivals in summer, rich foliage in autumn, and serene snowscapes in winter.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="attractions" class="content-section textured-bg">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Must-See Destinations</h2>
+                <div class="attractions-grid">
+                    <div class="attraction-card animate-on-scroll">
+                        <img src="assets/kyoto.jpg" alt="Kyoto Temple">
+                        <div class="card-content">
+                            <h3>Kyoto</h3>
+                            <p>The cultural heart of Japan, home to geishas, magnificent temples, and sublime gardens. Best visited in spring or autumn.</p>
+                        </div>
+                    </div>
+                    <div class="attraction-card animate-on-scroll">
+                        <img src="assets/tokyo.jpg" alt="Tokyo Nightlife">
+                        <div class="card-content">
+                            <h3>Tokyo</h3>
+                            <p>A dazzling metropolis where you can explore imperial palaces, bustling markets, and futuristic cityscapes.</p>
+                        </div>
+                    </div>
+                    <div class="attraction-card animate-on-scroll">
+                        <img src="assets/hokkaido.jpg" alt="Hokkaido Landscape">
+                        <div class="card-content">
+                            <h3>Hokkaido</h3>
+                            <p>Japan's northern wilderness, famous for its pristine nature, world-class ski resorts, and volcanic landscapes.</p>
+                        </div>
+                    </div>
+                    <div class="attraction-card animate-on-scroll">
+                        <img src="assets/okinawa.jpg" alt="Okinawa Beach">
+                        <div class="card-content">
+                            <h3>Okinawa</h3>
+                            <p>A tropical paradise with stunning coral reefs, white-sand beaches, and a unique Ryukyuan culture.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="trains" class="content-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Journey in Luxury</h2>
+                <p class="section-subtitle animate-on-scroll">Experience the pinnacle of Japanese hospitality aboard these magnificent trains.</p>
+                <div class="train-showcase">
+                    <div class="train-card animate-on-scroll">
+                        <img src="assets/seven-stars.jpg" alt="Seven Stars in Kyushu">
+                        <div class="train-info">
+                            <h3>Seven Stars in Kyushu</h3>
+                            <p>A journey through Kyushu's stunning landscapes in opulent suites featuring intricate woodwork and Arita porcelain. Enjoy gourmet meals prepared by star chefs.</p>
+                            <span>Prices from ¥650,000</span>
+                        </div>
+                    </div>
+                    <div class="train-card animate-on-scroll">
+                        <img src="assets/shiki-shima.jpg" alt="Train Suite Shiki-Shima">
+                        <div class="train-info">
+                            <h3>Train Suite Shiki-Shima</h3>
+                            <p>A futuristic marvel with panoramic observatory cars and suites with private cypress baths. Routes explore the natural beauty of eastern Japan.</p>
+                            <span>Prices from ¥950,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="content-section textured-bg">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Travel Stories & Tips</h2>
+                <div class="blog-grid">
+                    <article class="blog-post animate-on-scroll">
+                        <img src="assets/festival.jpg" alt="Japanese Festival">
+                        <div class="blog-content">
+                            <h4>Top 5 Summer Festivals in Japan</h4>
+                            <p>Discover the vibrant energy of Japan's 'matsuri' with our guide to the best summer festivals...</p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </article>
+                    <article class="blog-post animate-on-scroll">
+                        <img src="assets/sushi.jpg" alt="Sushi platter">
+                        <div class="blog-content">
+                            <h4>A Guide to Japanese Dining Etiquette</h4>
+                            <p>From chopsticks to bowing, learn the essential customs to respectfully enjoy Japan's incredible cuisine...</p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </article>
+                    <article class="blog-post animate-on-scroll">
+                        <img src="assets/mt-fuji.jpg" alt="Mount Fuji">
+                        <div class="blog-content">
+                            <h4>Planning Your Climb: Mount Fuji</h4>
+                            <p>Everything you need to know about climbing Japan's most iconic peak, from trails to preparation...</p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section">
+            <div class="container animate-on-scroll">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Have questions or want to plan your trip? Send us a message!</p>
+                <form class="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2025 Essence of Japan. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <div id="audio-player">
+        <audio id="ambient-music" loop>
+            <source src="assets/music.mp3" type="audio/mpeg">
+        </audio>
+        <button id="music-toggle" aria-label="Play Music">
+            <i class="fas fa-play"></i>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Sticky Header on Scroll ---
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // --- Animate Elements on Scroll ---
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once it's visible
+                    }
+                });
+            }, observerOptions);
+
+            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+            elementsToAnimate.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // --- Smooth Scrolling for Navigation Links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+
+            // --- Ambient Music Toggle ---
+            const musicToggle = document.getElementById('music-toggle');
+            const ambientMusic = document.getElementById('ambient-music');
+            const musicIcon = musicToggle.querySelector('i');
+
+            musicToggle.addEventListener('click', () => {
+                const isPlaying = !ambientMusic.paused;
+
+                if (isPlaying) {
+                    ambientMusic.pause();
+                    musicIcon.classList.remove('fa-pause');
+                    musicIcon.classList.add('fa-play');
+                } else {
+                    ambientMusic.play().catch(error => {
+                        // Autoplay might be blocked, log the error
+                        console.error("Audio autoplay failed:", error);
+                    });
+                    musicIcon.classList.remove('fa-play');
+                    musicIcon.classList.add('fa-pause');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
